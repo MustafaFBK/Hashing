@@ -1,3 +1,4 @@
-getpass
+python==3.12.4
 pycryptodome==3.14.1
-hashlib
+
+
