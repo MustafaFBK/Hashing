@@ -42,7 +42,7 @@ Mustafa's Password Hasher is a Python script that generates various password has
 <=== NTLM(NT) ===>  
 `36aa83bdcab3c9fdaf321ca42a31c3fc`
 
-
+<hr>
 ### Security Note
 This script is for educational purposes only and should not be used to store or manage passwords in a production environment. Password hashing should always be done using a secure and salted hashing algorithm, such as bcrypt or Argon2.
 
