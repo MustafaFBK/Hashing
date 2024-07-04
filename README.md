@@ -19,8 +19,9 @@ Mustafa's Password Hasher is a Python script that generates various password has
 ### Usage
 
 ### Example :
+`Note : <-- The password is Hidden --> `
 
-#### Enter password to hash:
+#### Enter password to hash :
 
 #### Hashes ===>
 
