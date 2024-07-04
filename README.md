@@ -18,7 +18,11 @@ Mustafa's Password Hasher is a Python script that generates various password has
 
 ### Usage
 
-### Example :
+#### TO install the requirements 
+
+`pip install -r requirements.txt`
+
+#### Example :
 `Note : <-- The password is Hidden --> `
 `Here the password is pass as example`
 <hr>
