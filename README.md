@@ -1,5 +1,5 @@
 # Mustafa's Password Hasher v1.0
-===========================
+================================
 
 ## A Python Script for Generating Password Hashes
 
