@@ -16,11 +16,11 @@ Mustafa's Password Hasher is a Python script that generates various password has
 * Uses secure password input with `getpass`
 * Easy to use and understand
 
-# Usage
+### Usage
 
-## Example :
+### Example :
 
-### Enter password to hash:
+#### Enter password to hash:
 
 #### Hashes ===>
 
@@ -48,7 +48,7 @@ This script is for educational purposes only and should not be used to store or 
 This script is licensed under the MIT License. See the `LICENSE` file for details.
 
 ### Author
-Mustafa [Your GitHub Username]
+Mustafa Banikhalaf
 
 ### Contributing
 Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request.
