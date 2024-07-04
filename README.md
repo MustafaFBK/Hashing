@@ -1,4 +1,4 @@
-# Mustafa's Password Hasher
+# Mustafa's Password Hasher v1.0
 ===========================
 
 ## A Python Script for Generating Password Hashes
@@ -16,28 +16,27 @@ Mustafa's Password Hasher is a Python script that generates various password has
 * Uses secure password input with `getpass`
 * Easy to use and understand
 
-### Usage
+## Usage
 
- _   _    _    ____  _   _  _____ ____  _  __
-| | | |  / \  / ___|| | | ||  ___| __ )| |/ /
-| |_| | / _ \ \___ \| |_| || |_  |  _ \| ' /
-|  _  |/ ___ \ ___) |  _  ||  _| | |_) | . \
-|_| |_/_/   \_\____/|_| |_||_|   |____/|_|\_
-By MustafaFBK Password Hasher v1.0
+### Enter password to hash:
 
+#### Hashes ===>
 
-Enter password to hash:
+##### MD5
+<=== MD5 ===>  
+`1a1dc91c907325c69271ddf0c944bc72`
 
-Hashes ===>
+##### SHA-1
+<=== SHA-1 ===>  
+`9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684`
 
-<=== MD5 ===>
-1a1dc91c907325c69271ddf0c944bc72
-<=== SHA-1 ===>
-9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684
-<=== SHA-256 ===>
-d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1
-<=== NTLM(NT) ===>
-36aa83bdcab3c9fdaf321ca42a31c3fc
+##### SHA-256
+<=== SHA-256 ===>  
+`d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1`
+
+##### NTLM(NT)
+<=== NTLM(NT) ===>  
+`36aa83bdcab3c9fdaf321ca42a31c3fc`
 
 
 ### Security Note
