@@ -1,63 +1,179 @@
 import hashlib
 import hmac
 from Crypto.Hash import MD4
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
+import os
 import getpass
 
-def generate_hashes(password):
-    """
-    Generate various hashes for a given password.
+# Constants
+SALT_SIZE = 16  # 16 bytes (128 bits) for salt
+AES_KEY_SIZE = 32  # 32 bytes (256 bits) for AES key
+HMAC_KEY_SIZE = 32  # 32 bytes (256 bits) for HMAC key
 
-    Args:
-        password (str): The password to hash.
+def generate_salt():
+    """
+    Generate a random salt for password hashing.
 
     Returns:
-        tuple: A tuple containing the MD5, SHA-1, SHA-256, and NTLM hashes.
+        bytes: Random salt.
     """
-    # Convert password to bytes
+    return os.urandom(SALT_SIZE)
+
+def generate_md5(password, salt):
+    """Generate MD5 hash."""
+    return hashlib.md5(salt + password.encode()).hexdigest()
+
+def generate_sha1(password, salt):
+    """Generate SHA-1 hash."""
+    return hashlib.sha1(salt + password.encode()).hexdigest()
+
+def generate_sha256(password, salt):
+    """Generate SHA-256 hash."""
+    return hashlib.sha256(salt + password.encode()).hexdigest()
+
+def generate_ntlm(password):
+    """Generate NTLM (NT) hash."""
     password_bytes = password.encode('utf-16le')  # Encode to UTF-16 little-endian for NTLM hash
+    return MD4.new(password_bytes).hexdigest()
 
-    # MD5 hash
-    md5_hash = hashlib.md5(password.encode()).hexdigest()
+def encrypt_data(data, key):
+    """
+    Encrypt data using AES-256-CBC.
 
-    # SHA-1 hash
-    sha1_hash = hashlib.sha1(password.encode()).hexdigest()
+    Args:
+        data (str): Data to encrypt.
+        key (bytes): AES encryption key.
 
-    # SHA-256 hash
-    sha256_hash = hashlib.sha256(password.encode()).hexdigest()
+    Returns:
+        tuple: A tuple containing the encrypted data and initialization vector (IV).
+    """
+    iv = os.urandom(16)  # 16 bytes (128 bits) for IV
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    encrypted_data = cipher.encrypt(pad(data.encode(), AES.block_size))
+    return encrypted_data, iv
 
-    # NTLM (NT) hash (MD4 hash of UTF-16 little-endian encoded password)
-    md4_hash = MD4.new(password_bytes).hexdigest()
+def decrypt_data(encrypted_data, key, iv):
+    """
+    Decrypt data using AES-256-CBC.
 
-    return md5_hash, sha1_hash, sha256_hash, md4_hash
+    Args:
+        encrypted_data (bytes): Encrypted data.
+        key (bytes): AES encryption key.
+        iv (bytes): Initialization vector.
+
+    Returns:
+        str: Decrypted data.
+    """
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    decrypted_data = unpad(cipher.decrypt(encrypted_data), AES.block_size)
+    return decrypted_data.decode()
+
+def generate_hmac(data, key):
+    """
+    Generate HMAC for data integrity.
+
+    Args:
+        data (bytes): Data to generate HMAC for.
+        key (bytes): HMAC key.
+
+    Returns:
+        str: HMAC hexdigest.
+    """
+    return hmac.new(key, data, hashlib.sha256).hexdigest()
+
+def display_menu():
+    """Display the menu options."""
+    print("\nChoose an option:")
+    print("1. Generate MD5 Hash")
+    print("2. Generate SHA-1 Hash")
+    print("3. Generate SHA-256 Hash")
+    print("4. Generate NTLM (NT) Hash")
+    print("5. Encrypt Password (AES-256-CBC)")
+    print("6. Decrypt Password (AES-256-CBC)")
+    print("7. Generate HMAC for Data")
+    print("8. Exit")
 
 def main():
-    
-    
-    print("""
- _   _    _    ____  _   _  _____ ____  _  __
-| | | |  / \  / ___|| | | ||  ___| __ )| |/ /
-| |_| | / _ \ \___ \| |_| || |_  |  _ \| ' / 
-|  _  |/ ___ \ ___) |  _  ||  _| | |_) | . \ 
-|_| |_/_/   \_\____/|_| |_||_|   |____/|_|\_\
+    # Banner
+    print(r"""
+     _   _    _    ____  _   _  _____ ____  _  __
+    | | | |  / \  / ___|| | | ||  ___| __ )| |/ /
+    | |_| | / _ \ \___ \| |_| || |_  |  _ \| ' / 
+    |  _  |/ ___ \ ___) |  _  ||  _| | |_) | . \ 
+    |_| |_/_/   \_\____/|_| |_||_|   |____/|_|\_\
 
-By MustafaFBK Password Hasher v1.0
-""")
-    
-  
-    
-    
+    By MustafaFBK Password Hasher & Encryptor v2.0
+    """)
+
     # Input password from user (using getpass for secure input)
-    password = getpass.getpass("\nEnter password to hash: ")
+    password = getpass.getpass("\nEnter password: ")
 
-    # Generate hashes
-    md5_hash, sha1_hash, sha256_hash, nt_hash = generate_hashes(password)
+    # Generate salt
+    salt = generate_salt()
+    print(f"\nGenerated Salt: {salt.hex()}")
 
-    # Print hashes
-    print("\nHashes ===> \n")
-    print(f"<=== MD5 ===> \n{md5_hash}")
-    print(f"<=== SHA-1 ===> \n{sha1_hash}")
-    print(f"<=== SHA-256 ===> \n{sha256_hash}")
-    print(f"<=== NTLM(NT) ===> \n{nt_hash}")
+    while True:
+        display_menu()
+        choice = input("\nEnter your choice (1-8): ")
+
+        if choice == "1":
+            # MD5 Hash
+            md5_hash = generate_md5(password, salt)
+            print(f"\n<=== MD5 Hash ===>\n{md5_hash}")
+
+        elif choice == "2":
+            # SHA-1 Hash
+            sha1_hash = generate_sha1(password, salt)
+            print(f"\n<=== SHA-1 Hash ===>\n{sha1_hash}")
+
+        elif choice == "3":
+            # SHA-256 Hash
+            sha256_hash = generate_sha256(password, salt)
+            print(f"\n<=== SHA-256 Hash ===>\n{sha256_hash}")
+
+        elif choice == "4":
+            # NTLM (NT) Hash
+            nt_hash = generate_ntlm(password)
+            print(f"\n<=== NTLM (NT) Hash ===>\n{nt_hash}")
+
+        elif choice == "5":
+            # AES Encryption
+            aes_key = os.urandom(AES_KEY_SIZE)
+            print(f"\nGenerated AES Key: {aes_key.hex()}")
+            encrypted_password, iv = encrypt_data(password, aes_key)
+            print(f"\n<=== Encrypted Password ===>\n{encrypted_password.hex()}")
+            print(f"<=== Initialization Vector (IV) ===>\n{iv.hex()}")
+
+        elif choice == "6":
+            # AES Decryption
+            aes_key_hex = input("Enter AES Key (hex): ")
+            iv_hex = input("Enter Initialization Vector (IV) (hex): ")
+            encrypted_password_hex = input("Enter Encrypted Password (hex): ")
+
+            try:
+                aes_key = bytes.fromhex(aes_key_hex)
+                iv = bytes.fromhex(iv_hex)
+                encrypted_password = bytes.fromhex(encrypted_password_hex)
+                decrypted_password = decrypt_data(encrypted_password, aes_key, iv)
+                print(f"\n<=== Decrypted Password ===>\n{decrypted_password}")
+            except ValueError:
+                print("\nInvalid input. Please enter valid hex values.")
+
+        elif choice == "7":
+            # HMAC Generation
+            hmac_key = os.urandom(HMAC_KEY_SIZE)
+            print(f"\nGenerated HMAC Key: {hmac_key.hex()}")
+            hmac_value = generate_hmac(password.encode(), hmac_key)
+            print(f"\n<=== HMAC for Password ===>\n{hmac_value}")
+
+        elif choice == "8":
+            # Exit
+            print("\nExiting the program. Goodbye!")
+            break
+
+        else:
+            print("\nInvalid choice. Please select a valid option (1-8).")
 
 if __name__ == "__main__":
     main()
