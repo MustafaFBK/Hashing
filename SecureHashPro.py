@@ -97,13 +97,7 @@ def display_menu():
 def main():
     # Banner
     print(r"""
-     _   _    _    ____  _   _  _____ ____  _  __
-    | | | |  / \  / ___|| | | ||  ___| __ )| |/ /
-    | |_| | / _ \ \___ \| |_| || |_  |  _ \| ' / 
-    |  _  |/ ___ \ ___) |  _  ||  _| | |_) | . \ 
-    |_| |_/_/   \_\____/|_| |_||_|   |____/|_|\_\
-
-    By MustafaFBK Password Hasher & Encryptor v2.0
+    By Mustafa Banikhalaf
     """)
 
     # Input password from user (using getpass for secure input)
