@@ -1,4 +1,4 @@
-![Header Image](SecureHashPro.png)
+![Header Image]()
 
 # Mustafa's Password Hasher v1.0
 ==========================================
