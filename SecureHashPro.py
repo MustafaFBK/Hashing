@@ -97,7 +97,12 @@ def display_menu():
 def main():
     # Banner
     print(r"""
-    By Mustafa Banikhalaf
+ ____                           _   _           _     ____
+/ ___|  ___  ___ _   _ _ __ ___| | | | __ _ ___| |__ |  _ \ _ __ ___
+\___ \ / _ \/ __| | | | '__/ _ \ |_| |/ _` / __| '_ \| |_) | '__/ _ \
+ ___) |  __/ (__| |_| | | |  __/  _  | (_| \__ \ | | |  __/| | | (_) |
+|____/ \___|\___|\__,_|_|  \___|_| |_|\__,_|___/_| |_|_|   |_|  \___/
+By Mustafa Banikhalaf
     """)
 
     # Input password from user (using getpass for secure input)
