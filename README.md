@@ -1,74 +1,112 @@
 ![Header Image](SecureHashPro1.png)
 
-# Mustafa's Password Hasher v1.0
-==========================================
+# SecureHashPro
 
-## A Python Script for Generating Password Hashes
+## Overview :
 
-### Overview
-Mustafa's Password Hasher is a Python script that generates various password hashes, including MD5, SHA-1, SHA-256, and NTLM. This script is designed to be a simple and easy-to-use tool for generating password hashes, and is intended for educational purposes only.
+**SecureHashPro** is a Python-based tool designed for generating secure password hashes and encrypting sensitive data. It supports multiple hashing algorithms, including MD5, SHA-1, SHA-256, and NTLM, and provides advanced features like AES-256-CBC encryption, HMAC generation, and salting. This tool is ideal for educational purposes, offering a hands-on way to learn about cryptography and secure password handling.
 
-### Features
+---
 
-* Generates four different types of password hashes:
-	+ MD5 (Message-Digest Algorithm 5)
-	+ SHA-1 (Secure Hash Algorithm 1)
-	+ SHA-256 (Secure Hash Algorithm 256)
-	+ NTLM (NT LAN Manager) hash, also known as the MD4 hash of the UTF-16 little-endian encoded password
-* Uses secure password input with `getpass`
-* Easy to use and understand
+## Key Features :
 
-### Usage
+### Password Hashing
+- Generates MD5, SHA-1, SHA-256, and NTLM hashes.
+- Uses random **salting** to enhance security and prevent rainbow table attacks.
 
-#### TO install the requirements 
+### AES Encryption
+- Encrypts data using **AES-256-CBC**, a robust encryption standard.
+- Generates a unique encryption key and initialization vector (IV) for each operation.
 
-`pip install -r requirements.txt`
+### Data Integrity
+- Generates **HMAC (Hash-based Message Authentication Code)** for encrypted data to ensure its integrity and authenticity.
 
-#### Example :
-`Note : <-- The password is Hidden --> `
-`Here the password is pass as example`
-<hr>
-#### Enter password to hash :
+### Interactive Menu
+- Provides a user-friendly menu for selecting operations such as hashing, encryption, decryption, and HMAC generation.
 
-#### Hashes ===>
+### Secure Input
+- Uses the `getpass` module to securely input passwords without displaying them on the screen.
 
-##### MD5
-<=== MD5 ===>  
-`1a1dc91c907325c69271ddf0c944bc72`
+---
 
-##### SHA-1
-<=== SHA-1 ===>  
-`9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684`
+## How It Works :
 
-##### SHA-256
-<=== SHA-256 ===>  
-`d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1`
+1. **Hashing**: The tool generates hashes for a given password using MD5, SHA-1, SHA-256, or NTLM algorithms. A random salt is added to the password before hashing to improve security.
+2. **Encryption**: Passwords or other sensitive data can be encrypted using AES-256-CBC. The tool generates a random encryption key and IV for each operation.
+3. **HMAC Generation**: HMAC is generated for encrypted data to ensure its integrity and detect any tampering.
+4. **Interactive Menu**: Users can choose from a menu of options to perform specific operations, such as generating hashes, encrypting data, decrypting data, or generating HMAC.
 
-##### NTLM(NT)
-<=== NTLM(NT) ===>  
-`36aa83bdcab3c9fdaf321ca42a31c3fc`
+---
 
-<hr>
-### Security Note
-This script is for educational purposes only and should not be used to store or manage passwords in a production environment. Password hashing should always be done using a secure and salted hashing algorithm, such as bcrypt or Argon2.
+## Usage
 
-### License
-This script is licensed under the MIT License. See the `LICENSE` file for details.
+### Installation :
 
-### Author
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/SecureHashPro.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd SecureHashPro
+   ```
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Running the Script :
+
+Run the script using Python:
+```bash
+python SecureHashPro.py
+```
+
+## Interactive Menu : 
+
+The script will display a menu with the following options:
+
+- Generate MD5 Hash
+- Generate SHA-1 Hash
+- Generate SHA-256 Hash
+- Generate NTLM (NT) Hash
+- Encrypt Password (AES-256-CBC)
+- Decrypt Password (AES-256-CBC)
+- Generate HMAC for Data
+- Exit
+
+## Security Note :
+
+This tool is intended for educational purposes only and should not be used in production environments. For real-world applications, always use secure and modern password hashing algorithms like bcrypt or Argon2, and follow best practices for encryption and data security.
+
+## Why Use SecureHashPro?
+
+- Educational Value: Learn about password hashing, encryption, and data integrity in a hands-on way.
+- Versatility: Supports multiple hashing algorithms and encryption techniques.
+- Ease of Use: The interactive menu makes it simple to perform various operations.
+- Security Demonstrations: Demonstrates the importance of salting, encryption, and HMAC in securing data.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Author
 Mustafa Banikhalaf
 
-### Contributing
-Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request.
+Contributing
+Contributions are welcome! If you'd like to contribute to this project, please:
 
-### Issues
-If you encounter any issues or have questions, please open an issue in this repository.
+Fork the repository.
 
-### Acknowledgments
-This script uses the following libraries:
+Create a new branch for your feature or bugfix.
 
-* `hashlib` for generating MD5, SHA-1, and SHA-256 hashes
-* `Cryptodome` for generating NTLM hashes
-* `getpass` for secure password input
+Submit a pull request.
 
-Thanks for using Mustafa's Password Hasher!
+Acknowledgments
+This tool uses the following libraries:
+
+hashlib for generating MD5, SHA-1, and SHA-256 hashes.
+
+Cryptodome for generating NTLM hashes and AES encryption.
+
+getpass for secure password input.
+
