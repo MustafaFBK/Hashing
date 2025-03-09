@@ -86,27 +86,25 @@ This tool is intended for educational purposes only and should not be used in pr
 - Ease of Use: The interactive menu makes it simple to perform various operations.
 - Security Demonstrations: Demonstrates the importance of salting, encryption, and HMAC in securing data.
 
-License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-Author
+## Author
 Mustafa Banikhalaf
 
-Contributing
+## Contributing :
+
 Contributions are welcome! If you'd like to contribute to this project, please:
 
-Fork the repository.
+- Fork the repository.
+- Create a new branch for your feature or bugfix.
+- Submit a pull request.
 
-Create a new branch for your feature or bugfix.
+## Acknowledgments :
 
-Submit a pull request.
-
-Acknowledgments
 This tool uses the following libraries:
 
-hashlib for generating MD5, SHA-1, and SHA-256 hashes.
-
-Cryptodome for generating NTLM hashes and AES encryption.
-
-getpass for secure password input.
+- hashlib for generating MD5, SHA-1, and SHA-256 hashes.
+- Cryptodome for generating NTLM hashes and AES encryption.
+- getpass for secure password input.
 
